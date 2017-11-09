@@ -22,22 +22,23 @@
 <% end %>
 
 <h3> Empleados </h3>
-<table>
+<table class="table">
   <tr>
     <th> Nombre </th>
     <th> Apellido </th>
     <th> Email </th>
     <th> Area </th>
+    <th></th>
   </tr>
-  <tr>
-    <% @employees.each do |employee| %>
+  <% @company.employees.each do |employee| %>
+    <tr>
       <td> <%= employee.first_name %> </td>
       <td> <%= employee.last_name %> </td>
       <td> <%= employee.email %> </td>
       <td> <%= employee.area.name %> </td>
-    <% end %>
-  </tr>
-
+      <td> <%= link_to 'Borrar', company_employee_path(@company, employee), class: "btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
 </table>
 
 <%= link_to 'Edit', edit_company_path(@company) %> |
