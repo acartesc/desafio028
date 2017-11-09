@@ -7,13 +7,13 @@
 
 <%= form_with(model: [ @company, @employee ], local: true) do |form| %>
   <%= form.label :"Nombre" %>
-  <%= form.text_area :first_name %>
+  <%= form.text_field :first_name, placeholder: 'Nombre' %>
 
   <%= form.label :"Apellido" %>
-  <%= form.text_area :last_name %>
+  <%= form.text_field :last_name, placeholder: 'Apellido' %>
 
   <%= form.label :"Email" %>
-  <%= form.text_area :email %>
+  <%= form.email_field :email, placeholder: 'Email', required: true %>
 
   <%= form.label :"Area" %>
   <%= form.select :area_id, @areas.collect {|a| [a.name, a.id]}, prompt: "Elige" %>
@@ -22,7 +22,7 @@
 <% end %>
 
 <h3> Empleados </h3>
-<table class="table">
+<table class="table table-bordered">
   <tr>
     <th> Nombre </th>
     <th> Apellido </th>
