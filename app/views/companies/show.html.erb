@@ -5,5 +5,40 @@
   <%= @company.name %>
 </p>
 
+<%= form_with(model: [ @company, @employee ], local: true) do |form| %>
+  <%= form.label :"Nombre" %>
+  <%= form.text_area :first_name %>
+
+  <%= form.label :"Apellido" %>
+  <%= form.text_area :last_name %>
+
+  <%= form.label :"Email" %>
+  <%= form.text_area :email %>
+
+  <%= form.label :"Area" %>
+  <%= form.select :area_id, @areas.collect {|a| [a.name, a.id]}, prompt: "Elige" %>
+
+  <%= form.submit "Crear" %>
+<% end %>
+
+<h3> Empleados </h3>
+<table>
+  <tr>
+    <th> Nombre </th>
+    <th> Apellido </th>
+    <th> Email </th>
+    <th> Area </th>
+  </tr>
+  <tr>
+    <% @employees.each do |employee| %>
+      <td> <%= employee.first_name %> </td>
+      <td> <%= employee.last_name %> </td>
+      <td> <%= employee.email %> </td>
+      <td> <%= employee.area.name %> </td>
+    <% end %>
+  </tr>
+
+</table>
+
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>
